@@ -7,9 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.jeuderole.R;
+import com.example.jeuderole.db.dao.JeuRoleDao;
 import com.example.jeuderole.models.Capacite;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,7 +31,9 @@ public class FragmentCapacite extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private JeuRoleDao dao;
+    private List<Capacite> listecapacite = new ArrayList<>();
+    private Capacite capacite;
     public FragmentCapacite() {
         // Required empty public constructor
     }
@@ -63,7 +70,20 @@ public class FragmentCapacite extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_capacite, container, false);
         btAjouter = v.findViewById(R.id.bt_capacite_ajouter);
-Capacite cap = new Capacite("abc","arbre ballon courrier",10);
+        btAjouter.setOnClickListener(v1 -> {
+            capacite = new Capacite("abc","arbre ballon courrier",10);
+            JeuRoleDao jeuRoleDao = new JeuRoleDao(v1.getContext());
+            jeuRoleDao.openWritable();
+            jeuRoleDao.insert(capacite);
+            jeuRoleDao.close();
+            Capacite capa2;
+
+            dao = new JeuRoleDao(v1.getContext());
+            dao.openReadable();
+            listecapacite = dao.getAll();
+            dao.close();
+            Toast.makeText(getView().getContext(), String.valueOf(listecapacite.size()),Toast.LENGTH_LONG).show();
+        });
 
 
         return  v;

@@ -23,7 +23,7 @@ public class DbInfo {
                         + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                         + COLUMN_ABREVIATION + " TEXT NOT NULL, "
                         + COLUMN_NOMCOMPLET + " TEXT NOT NULL, "
-                        + COLUMN_MAXPOINTS + " TEXT NOT NULL, "
+                        + COLUMN_MAXPOINTS + " TEXT NOT NULL "
                         + ");" ;
 
         public static final String REQUEST_DROP =
