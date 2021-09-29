@@ -18,6 +18,7 @@ import com.example.jeuderole.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 //https://www.youtube.com/watch?v=C9gIPu60m1c
+    //https://www.youtube.com/watch?v=O3BVBzV58hg
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.nav_map)
 .setDrawerLayout(drawer)
 
                 .build();

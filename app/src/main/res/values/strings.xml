@@ -5,9 +5,20 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
+
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_carte">Carte</string>
+    <string name="menu_capacite">Capacite</string>
+    <string name="menu_capaciteplus">CapacitePlus</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="tv_fragMap_tv">Map</string>
+
+    <string name="carte_du_monde_opstandne">carte du monde opstandne</string>
 </resources>

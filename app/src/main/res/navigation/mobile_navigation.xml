@@ -22,4 +22,15 @@
         android:name="com.example.jeuderole.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_map"
+        android:name="com.example.jeuderole.ui.FragmentMap"
+        android:label="@string/menu_carte"
+        tools:layout="@layout/fragment_map" />
+    <fragment
+        android:id="@+id/nav_capacite"
+        android:name="com.example.jeuderole.ui.FragmentCapacite"
+        android:label="Capacite"
+        tools:layout="@layout/fragment_capacite" />
+
 </navigation>
