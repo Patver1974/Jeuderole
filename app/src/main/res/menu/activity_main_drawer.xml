@@ -23,7 +23,12 @@
         <item
             android:id="@+id/nav_capacite"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Capacite" />
+            android:title="@string/menu_capacite" />
+
+        <item
+            android:id="@+id/nav_modification"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_modification" />
 
     </group>
 </menu>

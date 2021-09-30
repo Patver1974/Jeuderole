@@ -1,4 +1,16 @@
 <resources>
+    <string-array name="categorie_personnage">
+        <item>Capacités</item>
+        <item>5 Sens</item>
+        <item>Compétences de combat</item>
+        <item>Compétences de tir</item>
+        <item>Compétences</item>
+        <item>Compétences utilisées</item>
+        <item>Compétences complexes</item>
+        <item>Sortilèges</item>
+    </string-array>
+
+
     <string name="app_name">JeuDeRole</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -13,7 +25,7 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_carte">Carte</string>
     <string name="menu_capacite">Capacite</string>
-    <string name="menu_capaciteplus">CapacitePlus</string>
+    <string name="menu_modification">Modification</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -21,4 +33,9 @@
     <string name="tv_fragMap_tv">Map</string>
 
     <string name="carte_du_monde_opstandne">carte du monde opstandne</string>
+    <string name="precedent"><![CDATA[<<]]></string>
+    <string name="btSuivant"><![CDATA[>>]]></string>
+    <string name="Sigleprecedent"><![CDATA[<<]]></string>
+    <string name="SigleSuivant"><![CDATA[>>]]></string>
+
 </resources>
