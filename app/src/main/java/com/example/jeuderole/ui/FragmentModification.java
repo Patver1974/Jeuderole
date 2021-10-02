@@ -7,44 +7,43 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.jeuderole.R;
+import com.example.jeuderole.db.dao.JeuRoleDao;
+import com.example.jeuderole.models.Capacite;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link FragmentModification#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentModification extends Fragment implements AdapterView.OnItemSelectedListener{
+public class FragmentModification extends Fragment implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private Button btSuivant, btPrecedent;
+    private TextView tvIndex;
     private Spinner spinnerDiffCompetences;
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private List<Capacite> ListeAModifier = new ArrayList<>();
+    private Integer postionliste = 0;
+    private JeuRoleDao dao;
+    private Integer maxIdListeCapacite = 0;
 
     public FragmentModification() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentModification.
-     */
+
     // TODO: Rename and change types and number of parameters
     public static FragmentModification newInstance(String param1, String param2) {
         FragmentModification fragment = new FragmentModification();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,10 +51,7 @@ public class FragmentModification extends Fragment implements AdapterView.OnItem
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
@@ -63,7 +59,9 @@ public class FragmentModification extends Fragment implements AdapterView.OnItem
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_modification, container, false);
         spinnerDiffCompetences = v.findViewById(R.id.sp_capacitemodification_categoriePersonnage);
-
+        btPrecedent = v.findViewById(R.id.bt_capacitemodification_precedent);
+        btSuivant = v.findViewById(R.id.bt_capacitemodification_suivant);
+        tvIndex = v.findViewById(R.id.tv_capacitemodification_index);
 //spinner
 
 // Create an ArrayAdapter using the string array and a default spinner layout
@@ -80,16 +78,61 @@ public class FragmentModification extends Fragment implements AdapterView.OnItem
         spinnerDiffCompetences.setSelection(0);
 
         spinnerDiffCompetences.setOnItemSelectedListener(this);
+
+        btSuivant.setOnClickListener(this);
+        btPrecedent.setOnClickListener(this);
+
         return v;
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        ListeAModifier.clear();
+        dao = new JeuRoleDao(getContext());
+        dao.openReadable();
+        ListeAModifier = dao.getAllWithCategorie(spinnerDiffCompetences.getSelectedItem().toString());
+        dao.close();
+        maxIdListeCapacite = ListeAModifier.size() - 1;
 
+        postionliste = 0;
+        Toast.makeText(getView().getContext(), String.valueOf(maxIdListeCapacite), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+    }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.bt_capacitemodification_precedent:
+                if (postionliste != 0) {
+                    if (maxIdListeCapacite == -1) {
+                        Toast.makeText(getContext(), "Pas d'enregistrement !!!", Toast.LENGTH_LONG).show();
+                    } else {
+                        postionliste = postionliste - 1;
+                        Afficherdonnee();
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Debut du fichier", Toast.LENGTH_LONG).show();
+                }
+                break;
+            case R.id.bt_capacitemodification_suivant:
+                if (!postionliste.equals(maxIdListeCapacite)) {
+                    if (maxIdListeCapacite == -1) {
+                        Toast.makeText(getContext(), "Pas d'enregistrement !!!", Toast.LENGTH_LONG).show();
+                    } else {
+                        postionliste = postionliste + 1;
+                        Afficherdonnee();
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Fin du fichier", Toast.LENGTH_LONG).show();
+                }
+                break;
+        }
+    }
+
+    private void Afficherdonnee() {
+        tvIndex.setText(String.valueOf(postionliste));
     }
 }

@@ -15,6 +15,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/bt_capacitemodification_precedent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Sigleprecedent" />
@@ -40,8 +41,12 @@
                 android:layout_height="20dp"/>
 
             <TextView
+                android:id="@+id/tv_capacitemodification_index"
+                android:textAlignment="center"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content" />
+                android:background="@color/white"
+                android:layout_height="wrap_content"
+                android:text="0"/>
         </LinearLayout>
 
         <View
@@ -49,6 +54,7 @@
             android:layout_height="0dp" />
 
         <Button
+            android:id="@+id/bt_capacitemodification_suivant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/SigleSuivant" />
