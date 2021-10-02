@@ -36,5 +36,7 @@
 
     <string name="Sigleprecedent"><![CDATA[<<]]></string>
     <string name="SigleSuivant"><![CDATA[>>]]></string>
+    <string name="Sigledebut"><![CDATA[|<<]]></string>
+    <string name="Siglefin"><![CDATA[>>|]]></string>
 
 </resources>

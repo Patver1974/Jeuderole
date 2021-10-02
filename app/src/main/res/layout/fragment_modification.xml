@@ -15,8 +15,18 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/bt_capacitemodification_debut"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="@string/Sigledebut" />
+
+        <View
+            android:layout_width="5dp"
+            android:layout_height="0dp" />
+
+        <Button
             android:id="@+id/bt_capacitemodification_precedent"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="@string/Sigleprecedent" />
 
@@ -55,10 +65,146 @@
 
         <Button
             android:id="@+id/bt_capacitemodification_suivant"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="@string/SigleSuivant" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="0dp" />
+
+        <Button
+            android:id="@+id/bt_capacitemodification_fin"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="@string/Siglefin" />
     </LinearLayout>
+    <EditText
+        android:id="@+id/et_capacitemodification_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        />
+    <EditText
+        android:id="@+id/et_capacitemodification_abreviation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        />
+    <EditText
+        android:id="@+id/et_capacitemodification_Categorie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        />
+    <EditText
+        android:id="@+id/et_capacitemodification_nomcomplet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        />
+    <EditText
+        android:id="@+id/et_capacitemodification_maxpoint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        />
+    <EditText
+        android:id="@+id/et_capacitemodification_degats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        />
+    <EditText
+        android:id="@+id/et_capacitemodification_pointactuel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        />
+    <EditText
+        android:id="@+id/et_capacitemodification_reglespeciale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        />
+    <EditText
+        android:id="@+id/et_capacitemodification_initiation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        />
+    <EditText
+        android:id="@+id/et_capacitemodification_entrainement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        />
+    <EditText
+        android:id="@+id/et_capacitemodification_maitrise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        />
+    <EditText
+        android:id="@+id/et_capacitemodification_initiationpoint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        />
+    <EditText
+        android:id="@+id/et_capacitemodification_entrainementpoint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        />
+    <EditText
+        android:id="@+id/et_capacitemodification_maitrisepoint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        />
 </LinearLayout>
 
 
