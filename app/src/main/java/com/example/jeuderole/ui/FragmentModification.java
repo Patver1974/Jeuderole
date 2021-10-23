@@ -37,6 +37,8 @@ public class FragmentModification extends Fragment implements AdapterView.OnItem
     private Integer maxIdListeCapacite = 0;
     private EditText etId, etAbreviation, etCategorie, etNomComplet, etMaxPoint, etDegats, etPointActuel, etRegleSpeciale,
             etInitiation, etEntrainement, etMaitrise, etInitiationPoint, etEntrainementPoint, etMaitrisePoint;
+    private View viewId, viewAbreviation, viewCategorie, viewNomComplet, viewMaxPoint, viewDegats, viewPointActuel, viewRegleSpeciale,
+            viewInitiation, viewEntrainement, viewMaitrise, viewInitiationPoint, viewEntrainementPoint, viewMaitrisePoint;
     private String categorieSelectionnee;
 
 
@@ -72,7 +74,7 @@ public class FragmentModification extends Fragment implements AdapterView.OnItem
         tvIndex = v.findViewById(R.id.tv_capacitemodification_index);
         etId = v.findViewById(R.id.et_capacitemodification_id);
         etAbreviation = v.findViewById(R.id.et_capacitemodification_abreviation);
-        etCategorie = v.findViewById(R.id.et_capacitemodification_Categorie);
+        etCategorie = v.findViewById(R.id.et_capacitemodification_categorie);
         etNomComplet = v.findViewById(R.id.et_capacitemodification_nomcomplet);
         etMaxPoint = v.findViewById(R.id.et_capacitemodification_maxpoint);
         etDegats = v.findViewById(R.id.et_capacitemodification_degats);
@@ -84,6 +86,22 @@ public class FragmentModification extends Fragment implements AdapterView.OnItem
         etInitiationPoint = v.findViewById(R.id.et_capacitemodification_initiationpoint);
         etEntrainementPoint = v.findViewById(R.id.et_capacitemodification_entrainementpoint);
         etMaitrisePoint = v.findViewById(R.id.et_capacitemodification_maitrisepoint);
+        viewId = v.findViewById(R.id.view_capacitemodification_view_id);
+        viewAbreviation = v.findViewById(R.id.view_capacitemodification_view_abreviation);
+        viewCategorie = v.findViewById(R.id.view_capacitemodification_view_categorie);
+        viewNomComplet = v.findViewById(R.id.view_capacitemodification_view_nomcomplet);
+        viewMaxPoint = v.findViewById(R.id.view_capacitemodification_view_maxpoint);
+        viewDegats = v.findViewById(R.id.view_capacitemodification_view_degats);
+        viewPointActuel = v.findViewById(R.id.view_capacitemodification_view_pointactuel);
+        viewRegleSpeciale = v.findViewById(R.id.view_capacitemodification_view_reglespeciale);
+        viewInitiation = v.findViewById(R.id.view_capacitemodification_view_initiation);
+        viewEntrainement = v.findViewById(R.id.view_capacitemodification_view_entrainement);
+        viewMaitrise = v.findViewById(R.id.view_capacitemodification_view_maitrise);
+        viewInitiationPoint = v.findViewById(R.id.view_capacitemodification_view_initiationpoint);
+        viewEntrainementPoint = v.findViewById(R.id.view_capacitemodification_view_entrainementpoint);
+        viewMaitrisePoint = v.findViewById(R.id.view_capacitemodification_view_maitrisepoint);
+
+
 
 //spinner
 

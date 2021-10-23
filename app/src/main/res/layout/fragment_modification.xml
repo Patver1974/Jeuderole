@@ -85,6 +85,7 @@
         android:layout_height="wrap_content"
         />
     <View
+        android:id="@+id/view_capacitemodification_view_id"
         android:layout_width="0dp"
         android:layout_height="10dp"
         />
@@ -94,15 +95,17 @@
         android:layout_height="wrap_content"
         />
     <View
+        android:id="@+id/view_capacitemodification_view_abreviation"
         android:layout_width="0dp"
         android:layout_height="10dp"
         />
     <EditText
-        android:id="@+id/et_capacitemodification_Categorie"
+        android:id="@+id/et_capacitemodification_categorie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
     <View
+        android:id="@+id/view_capacitemodification_view_categorie"
         android:layout_width="0dp"
         android:layout_height="10dp"
         />
@@ -112,6 +115,7 @@
         android:layout_height="wrap_content"
         />
     <View
+        android:id="@+id/view_capacitemodification_view_nomcomplet"
         android:layout_width="0dp"
         android:layout_height="10dp"
         />
@@ -121,6 +125,7 @@
         android:layout_height="wrap_content"
         />
     <View
+        android:id="@+id/view_capacitemodification_view_maxpoint"
         android:layout_width="0dp"
         android:layout_height="10dp"
         />
@@ -130,6 +135,7 @@
         android:layout_height="wrap_content"
         />
     <View
+        android:id="@+id/view_capacitemodification_view_degats"
         android:layout_width="0dp"
         android:layout_height="10dp"
         />
@@ -139,6 +145,7 @@
         android:layout_height="wrap_content"
         />
     <View
+        android:id="@+id/view_capacitemodification_view_pointactuel"
         android:layout_width="0dp"
         android:layout_height="10dp"
         />
@@ -148,6 +155,7 @@
         android:layout_height="wrap_content"
         />
     <View
+        android:id="@+id/view_capacitemodification_view_reglespeciale"
         android:layout_width="0dp"
         android:layout_height="10dp"
         />
@@ -157,6 +165,7 @@
         android:layout_height="wrap_content"
         />
     <View
+        android:id="@+id/view_capacitemodification_view_initiation"
         android:layout_width="0dp"
         android:layout_height="10dp"
         />
@@ -166,6 +175,7 @@
         android:layout_height="wrap_content"
         />
     <View
+        android:id="@+id/view_capacitemodification_view_entrainement"
         android:layout_width="0dp"
         android:layout_height="10dp"
         />
@@ -175,6 +185,7 @@
         android:layout_height="wrap_content"
         />
     <View
+        android:id="@+id/view_capacitemodification_view_maitrise"
         android:layout_width="0dp"
         android:layout_height="10dp"
         />
@@ -184,6 +195,7 @@
         android:layout_height="wrap_content"
         />
     <View
+        android:id="@+id/view_capacitemodification_view_initiationpoint"
         android:layout_width="0dp"
         android:layout_height="10dp"
         />
@@ -193,6 +205,7 @@
         android:layout_height="wrap_content"
         />
     <View
+        android:id="@+id/view_capacitemodification_view_entrainementpoint"
         android:layout_width="0dp"
         android:layout_height="10dp"
         />
@@ -202,6 +215,7 @@
         android:layout_height="wrap_content"
         />
     <View
+        android:id="@+id/view_capacitemodification_view_maitrisepoint"
         android:layout_width="0dp"
         android:layout_height="10dp"
         />
