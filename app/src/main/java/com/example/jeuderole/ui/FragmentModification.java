@@ -2,6 +2,7 @@ package com.example.jeuderole.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import com.example.jeuderole.models.Capacite;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,18 +30,17 @@ import java.util.List;
  */
 public class FragmentModification extends Fragment implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
+    private Button btReinitialiser, btModifier, btMiseAZero, btAjouter;
     private Button btSuivant, btPrecedent;
     private Button btDebut, btFin;
     private TextView tvIndex;
     private Spinner spinnerDiffCompetences;
     private List<Capacite> ListeAModifier = new ArrayList<>();
-    private Integer postionliste = 0;
+    private Integer positionliste = 0;
     private JeuRoleDao dao;
     private Integer maxIdListeCapacite = 0;
     private EditText etId, etAbreviation, etCategorie, etNomComplet, etMaxPoint, etDegats, etPointActuel, etRegleSpeciale,
             etInitiation, etEntrainement, etMaitrise, etInitiationPoint, etEntrainementPoint, etMaitrisePoint;
-    private View viewId, viewAbreviation, viewCategorie, viewNomComplet, viewMaxPoint, viewDegats, viewPointActuel, viewRegleSpeciale,
-            viewInitiation, viewEntrainement, viewMaitrise, viewInitiationPoint, viewEntrainementPoint, viewMaitrisePoint;
     private String categorieSelectionnee;
 
 
@@ -66,6 +68,10 @@ public class FragmentModification extends Fragment implements AdapterView.OnItem
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_modification, container, false);
+        btReinitialiser = v.findViewById(R.id.bt_capacitemodification_reinitialisation);
+        btMiseAZero = v.findViewById(R.id.bt_capacitemodification_miseazero);
+        btAjouter = v.findViewById(R.id.bt_capacitemodification_ajouter);
+        btModifier = v.findViewById(R.id.bt_capacitemodification_modifier);
         spinnerDiffCompetences = v.findViewById(R.id.sp_capacitemodification_categoriePersonnage);
         btPrecedent = v.findViewById(R.id.bt_capacitemodification_precedent);
         btSuivant = v.findViewById(R.id.bt_capacitemodification_suivant);
@@ -86,21 +92,6 @@ public class FragmentModification extends Fragment implements AdapterView.OnItem
         etInitiationPoint = v.findViewById(R.id.et_capacitemodification_initiationpoint);
         etEntrainementPoint = v.findViewById(R.id.et_capacitemodification_entrainementpoint);
         etMaitrisePoint = v.findViewById(R.id.et_capacitemodification_maitrisepoint);
-        viewId = v.findViewById(R.id.view_capacitemodification_view_id);
-        viewAbreviation = v.findViewById(R.id.view_capacitemodification_view_abreviation);
-        viewCategorie = v.findViewById(R.id.view_capacitemodification_view_categorie);
-        viewNomComplet = v.findViewById(R.id.view_capacitemodification_view_nomcomplet);
-        viewMaxPoint = v.findViewById(R.id.view_capacitemodification_view_maxpoint);
-        viewDegats = v.findViewById(R.id.view_capacitemodification_view_degats);
-        viewPointActuel = v.findViewById(R.id.view_capacitemodification_view_pointactuel);
-        viewRegleSpeciale = v.findViewById(R.id.view_capacitemodification_view_reglespeciale);
-        viewInitiation = v.findViewById(R.id.view_capacitemodification_view_initiation);
-        viewEntrainement = v.findViewById(R.id.view_capacitemodification_view_entrainement);
-        viewMaitrise = v.findViewById(R.id.view_capacitemodification_view_maitrise);
-        viewInitiationPoint = v.findViewById(R.id.view_capacitemodification_view_initiationpoint);
-        viewEntrainementPoint = v.findViewById(R.id.view_capacitemodification_view_entrainementpoint);
-        viewMaitrisePoint = v.findViewById(R.id.view_capacitemodification_view_maitrisepoint);
-
 
 
 //spinner
@@ -125,12 +116,54 @@ public class FragmentModification extends Fragment implements AdapterView.OnItem
         btFin.setOnClickListener(this);
         btDebut.setOnClickListener(this);
 
+        btReinitialiser.setOnClickListener(this);
+        btModifier.setOnClickListener(this);
+        btMiseAZero.setOnClickListener(this);
+        btAjouter.setOnClickListener(this);
         return v;
+    }
+
+    private void MettrePaddingZero() {
+        etId.setPadding(0, 0, 0, 0);
+        etAbreviation.setPadding(0, 0, 0, 0);
+        etCategorie.setPadding(0, 0, 0, 0);
+        etNomComplet.setPadding(0, 0, 0, 0);
+        etMaxPoint.setPadding(0, 0, 0, 0);
+        etDegats.setPadding(0, 0, 0, 0);
+        etPointActuel.setPadding(0, 0, 0, 0);
+        etRegleSpeciale.setPadding(0, 0, 0, 0);
+        etInitiation.setPadding(0, 0, 0, 0);
+        etEntrainement.setPadding(0, 0, 0, 0);
+        etMaitrise.setPadding(0, 0, 0, 0);
+        etInitiationPoint.setPadding(0, 0, 0, 0);
+        etEntrainementPoint.setPadding(0, 0, 0, 0);
+        etMaitrisePoint.setPadding(0, 0, 0, 0);
+    }
+
+    private void RendreTextInvisible() {
+        etId.setVisibility(View.INVISIBLE);
+        etAbreviation.setVisibility(View.INVISIBLE);
+        etCategorie.setVisibility(View.INVISIBLE);
+        etNomComplet.setVisibility(View.INVISIBLE);
+        etMaxPoint.setVisibility(View.INVISIBLE);
+        etDegats.setVisibility(View.INVISIBLE);
+        etPointActuel.setVisibility(View.INVISIBLE);
+        etRegleSpeciale.setVisibility(View.INVISIBLE);
+        etInitiation.setVisibility(View.INVISIBLE);
+        etEntrainement.setVisibility(View.INVISIBLE);
+        etMaitrise.setVisibility(View.INVISIBLE);
+        etInitiationPoint.setVisibility(View.INVISIBLE);
+        etEntrainementPoint.setVisibility(View.INVISIBLE);
+        etMaitrisePoint.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        RendreTextInvisible();
+        MettrePaddingZero();
+
         ListeAModifier.clear();
+
         dao = new JeuRoleDao(getContext());
         dao.openReadable();
         categorieSelectionnee = spinnerDiffCompetences.getSelectedItem().toString();
@@ -138,7 +171,7 @@ public class FragmentModification extends Fragment implements AdapterView.OnItem
         dao.close();
         maxIdListeCapacite = ListeAModifier.size() - 1;
 
-        postionliste = 0;
+        positionliste = 0;
         if (maxIdListeCapacite >= 0) {
             Afficherdonnee();
         }
@@ -154,11 +187,11 @@ public class FragmentModification extends Fragment implements AdapterView.OnItem
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_capacitemodification_precedent:
-                if (postionliste != 0) {
+                if (positionliste != 0) {
                     if (maxIdListeCapacite == -1) {
                         Toast.makeText(getContext(), "Pas d'enregistrement !!!", Toast.LENGTH_LONG).show();
                     } else {
-                        postionliste = postionliste - 1;
+                        positionliste = positionliste - 1;
                         Afficherdonnee();
                     }
                 } else {
@@ -166,11 +199,11 @@ public class FragmentModification extends Fragment implements AdapterView.OnItem
                 }
                 break;
             case R.id.bt_capacitemodification_suivant:
-                if (!postionliste.equals(maxIdListeCapacite)) {
+                if (!positionliste.equals(maxIdListeCapacite)) {
                     if (maxIdListeCapacite == -1) {
                         Toast.makeText(getContext(), "Pas d'enregistrement !!!", Toast.LENGTH_LONG).show();
                     } else {
-                        postionliste = postionliste + 1;
+                        positionliste = positionliste + 1;
                         Afficherdonnee();
                     }
                 } else {
@@ -181,97 +214,243 @@ public class FragmentModification extends Fragment implements AdapterView.OnItem
                 if (maxIdListeCapacite == -1) {
                     Toast.makeText(getContext(), "Pas d'enregistrement !!!", Toast.LENGTH_LONG).show();
                 } else {
-                    postionliste = 0;
+                    positionliste = 0;
                     Afficherdonnee();
                 }
+                break;
             case R.id.bt_capacitemodification_fin:
 
                 if (maxIdListeCapacite == -1) {
                     Toast.makeText(getContext(), "Pas d'enregistrement !!!", Toast.LENGTH_LONG).show();
                 } else {
-                    postionliste = maxIdListeCapacite;
+                    positionliste = maxIdListeCapacite;
                     Afficherdonnee();
                 }
+                break;
+            case R.id.bt_capacitemodification_reinitialisation:
+                Afficherdonnee();
+                break;
+            case R.id.bt_capacitemodification_miseazero:
+                MiseAzero();
+                break;
+            case R.id.bt_capacitemodification_modifier:
+                Updatebsd();
+
+                break;
+            case R.id.bt_capacitemodification_ajouter:
+
+                break;
+        }
+    }
+
+    private void Updatebsd() {
+
+
+
+        Boolean testErreur = false;
+        Long idCapacite = Long.valueOf(etId.getText().toString());
+        String tmpmaxpointstr = etMaxPoint.getText().toString().trim();
+        String tmppointactuelstr = etPointActuel.getText().toString().trim();
+        String tmppointinitiationstr = etInitiationPoint.getText().toString().trim();
+        String tmppointentrainementstr = etEntrainementPoint.getText().toString().trim();
+        String tmppointmaitrisestr = etMaitrisePoint.getText().toString().trim();
+
+        tmpmaxpointstr = tmpmaxpointstr.isEmpty() ? "0" : tmpmaxpointstr;
+        tmppointactuelstr = tmppointactuelstr.isEmpty() ? "0" : tmppointactuelstr;
+        tmppointinitiationstr = tmppointinitiationstr.isEmpty() ? "0" : tmppointinitiationstr;
+        tmppointentrainementstr = tmppointentrainementstr.isEmpty() ? "0" : tmppointentrainementstr;
+        tmppointmaitrisestr = tmppointmaitrisestr.isEmpty() ? "0" : tmppointmaitrisestr;
+
+        Integer tmpmaxpointint = null;
+        Integer tmppointactuelint = null;
+        Integer tmppointinitiationint = null;
+        Integer tmppointentrainementint = null;
+        Integer tmppointmaitriseint = null;
+
+        if (Pattern.matches("^[0-9]+$", tmpmaxpointstr)) {
+            tmpmaxpointint = Integer.valueOf(tmpmaxpointstr);
+        } else {
+            Toast.makeText(getContext(), "Données non valide !!!", Toast.LENGTH_LONG).show();
+            testErreur = true;
+        }
+
+        if (Pattern.matches("^[0-9]+$", tmppointactuelstr)) {
+            tmppointactuelint = Integer.valueOf(tmppointactuelstr);
+        } else {
+            Toast.makeText(getContext(), "Données non valide !!!", Toast.LENGTH_LONG).show();
+            testErreur = true;
+        }
+
+        if (Pattern.matches("^[0-9]+$", tmppointinitiationstr)) {
+            tmppointinitiationint = Integer.valueOf(tmppointinitiationstr);
+        } else {
+            Toast.makeText(getContext(), "Données non valide !!!", Toast.LENGTH_LONG).show();
+            testErreur = true;
+        }
+
+        if (Pattern.matches("^[0-9]+$", tmppointentrainementstr)) {
+            tmppointentrainementint = Integer.valueOf(tmppointentrainementstr);
+        } else {
+            Toast.makeText(getContext(), "Données non valide !!!", Toast.LENGTH_LONG).show();
+            testErreur = true;
+        }
+
+        if (Pattern.matches("^[0-9]+$", tmppointmaitrisestr)) {
+            tmppointmaitriseint = Integer.valueOf(tmppointmaitrisestr);
+        } else {
+            Toast.makeText(getContext(), "Données non valide !!!", Toast.LENGTH_LONG).show();
+            testErreur = true;
+        }
+
+
+        if (testErreur == false) {
+
+
+            dao.openWritable();
+            Capacite capaciteItem = new Capacite(etCategorie.getText().toString(), etAbreviation.getText().toString(),
+                    etNomComplet.getText().toString(), tmpmaxpointint, etDegats.getText().toString(), tmppointactuelint, etRegleSpeciale.getText().toString(),
+                    etInitiation.getText().toString(), etEntrainement.getText().toString(), etMaitrise.getText().toString(),
+                    tmppointinitiationint, tmppointentrainementint, tmppointmaitriseint);
+            dao.update(idCapacite, capaciteItem);
+            dao.close();
+
+            ListeAModifier.set(positionliste,capaciteItem);
+
 
         }
     }
 
+    private void MiseAzero() {
+        etId.setText("");
+        etAbreviation.setText("");
+        etCategorie.setText("");
+        etNomComplet.setText("");
+        etMaxPoint.setText("");
+        etDegats.setText("");
+        etPointActuel.setText("");
+        etRegleSpeciale.setText("");
+        etInitiation.setText("");
+        etEntrainement.setText("");
+        etMaitrise.setText("");
+        etInitiationPoint.setText("");
+        etEntrainementPoint.setText("");
+        etMaitrisePoint.setText("");
+    }
+
     private void Afficherdonnee() {
-        tvIndex.setText(String.valueOf(postionliste));
+        MiseAzero();
+        tvIndex.setText(String.valueOf(positionliste));
 
         etNomComplet.setText("");
-//        etId.setText(String.valueOf(ListeAModifier.get(postionliste).getId()));
-//        etAbreviation.setText(String.valueOf(ListeAModifier.get(postionliste).getAbrev()));
-//        etCategorie.setText(String.valueOf(ListeAModifier.get(postionliste).getCategorie()));
-//        etNomComplet.setText(String.valueOf(ListeAModifier.get(postionliste).getNomComplet()));
-//        etMaxPoint.setText(String.valueOf(ListeAModifier.get(postionliste).getMaxPoints()));
-//        etDegats.setText(String.valueOf(ListeAModifier.get(postionliste).getDegats()));
-//        etPointActuel.setText(String.valueOf(ListeAModifier.get(postionliste).getPointActuel()));
-//        etRegleSpeciale.setText(String.valueOf(ListeAModifier.get(postionliste).getRegleSpeciale()));
-//        etInitiation.setText(String.valueOf(ListeAModifier.get(postionliste).getInitiation()));
-//        etEntrainement.setText(String.valueOf(ListeAModifier.get(postionliste).getEntrainement()));
-//        etMaitrise.setText(String.valueOf(ListeAModifier.get(postionliste).getMaitrise()));
-//        etInitiationPoint.setText(String.valueOf(ListeAModifier.get(postionliste).getInitiationPoint()));
-//        etEntrainementPoint.setText(String.valueOf(ListeAModifier.get(postionliste).getEntrainementPoint()));
-//        etMaitrisePoint.setText(String.valueOf(ListeAModifier.get(postionliste).getMaitrisePoint()));
+//        etId.setText(String.valueOf(ListeAModifier.get(positionliste).getId()));
+//        etAbreviation.setText(String.valueOf(ListeAModifier.get(positionliste).getAbrev()));
+//        etCategorie.setText(String.valueOf(ListeAModifier.get(positionliste).getCategorie()));
+//        etNomComplet.setText(String.valueOf(ListeAModifier.get(positionliste).getNomComplet()));
+//        etMaxPoint.setText(String.valueOf(ListeAModifier.get(positionliste).getMaxPoints()));
+//        etDegats.setText(String.valueOf(ListeAModifier.get(positionliste).getDegats()));
+//        etPointActuel.setText(String.valueOf(ListeAModifier.get(positionliste).getPointActuel()));
+//        etRegleSpeciale.setText(String.valueOf(ListeAModifier.get(positionliste).getRegleSpeciale()));
+//        etInitiation.setText(String.valueOf(ListeAModifier.get(positionliste).getInitiation()));
+//        etEntrainement.setText(String.valueOf(ListeAModifier.get(positionliste).getEntrainement()));
+//        etMaitrise.setText(String.valueOf(ListeAModifier.get(positionliste).getMaitrise()));
+//        etInitiationPoint.setText(String.valueOf(ListeAModifier.get(positionliste).getInitiationPoint()));
+//        etEntrainementPoint.setText(String.valueOf(ListeAModifier.get(positionliste).getEntrainementPoint()));
+//        etMaitrisePoint.setText(String.valueOf(ListeAModifier.get(positionliste).getMaitrisePoint()));
 
         switch (categorieSelectionnee) {
 
             case "Capacités":
-                etAbreviation.setText(String.valueOf(ListeAModifier.get(postionliste).getAbrev()));
-                etNomComplet.setText(String.valueOf(ListeAModifier.get(postionliste).getNomComplet()));
-                etMaxPoint.setText(String.valueOf(ListeAModifier.get(postionliste).getMaxPoints()));
+                etCategorie.setText(String.valueOf(ListeAModifier.get(positionliste).getCategorie()));
+                etAbreviation.setText(String.valueOf(ListeAModifier.get(positionliste).getAbrev()));
+                etNomComplet.setText(String.valueOf(ListeAModifier.get(positionliste).getNomComplet()));
+                etMaxPoint.setText(String.valueOf(ListeAModifier.get(positionliste).getMaxPoints()));
+
+                etAbreviation.setVisibility(View.VISIBLE);
+                etNomComplet.setVisibility(View.VISIBLE);
+                etMaxPoint.setVisibility(View.VISIBLE);
 
                 break;
             case "5 Sens":
-                etNomComplet.setText(String.valueOf(ListeAModifier.get(postionliste).getNomComplet()));
-                etMaxPoint.setText(String.valueOf(ListeAModifier.get(postionliste).getMaxPoints()));
+                etCategorie.setText(String.valueOf(ListeAModifier.get(positionliste).getCategorie()));
+                etNomComplet.setText(String.valueOf(ListeAModifier.get(positionliste).getNomComplet()));
+                etMaxPoint.setText(String.valueOf(ListeAModifier.get(positionliste).getMaxPoints()));
 
+                etNomComplet.setVisibility(View.VISIBLE);
+                etMaxPoint.setVisibility(View.VISIBLE);
                 break;
             case "Compétences de combat":
-                etNomComplet.setText(String.valueOf(ListeAModifier.get(postionliste).getNomComplet()));
-                etDegats.setText(String.valueOf(ListeAModifier.get(postionliste).getDegats()));
-                etRegleSpeciale.setText(String.valueOf(ListeAModifier.get(postionliste).getRegleSpeciale()));
+                etCategorie.setText(String.valueOf(ListeAModifier.get(positionliste).getCategorie()));
+                etNomComplet.setText(String.valueOf(ListeAModifier.get(positionliste).getNomComplet()));
+                etDegats.setText(String.valueOf(ListeAModifier.get(positionliste).getDegats()));
+                etRegleSpeciale.setText(String.valueOf(ListeAModifier.get(positionliste).getRegleSpeciale()));
 
+                etNomComplet.setVisibility(View.VISIBLE);
+                etDegats.setVisibility(View.VISIBLE);
+                etRegleSpeciale.setVisibility(View.VISIBLE);
                 break;
             case "Compétences de tir":
-                etNomComplet.setText(String.valueOf(ListeAModifier.get(postionliste).getNomComplet()));
-                etDegats.setText(String.valueOf(ListeAModifier.get(postionliste).getDegats()));
-                etEntrainementPoint.setText(String.valueOf(ListeAModifier.get(postionliste).getEntrainementPoint()));
-                etRegleSpeciale.setText(String.valueOf(ListeAModifier.get(postionliste).getRegleSpeciale()));
+                etCategorie.setText(String.valueOf(ListeAModifier.get(positionliste).getCategorie()));
+                etNomComplet.setText(String.valueOf(ListeAModifier.get(positionliste).getNomComplet()));
+                etDegats.setText(String.valueOf(ListeAModifier.get(positionliste).getDegats()));
+                etEntrainementPoint.setText(String.valueOf(ListeAModifier.get(positionliste).getEntrainementPoint()));
+                etRegleSpeciale.setText(String.valueOf(ListeAModifier.get(positionliste).getRegleSpeciale()));
 
+                etNomComplet.setVisibility(View.VISIBLE);
+                etDegats.setVisibility(View.VISIBLE);
+                etEntrainementPoint.setVisibility(View.VISIBLE);
+                etRegleSpeciale.setVisibility(View.VISIBLE);
                 break;
             case "Compétences":
             case "Compétences utilisées":
             case "Compétences complexes":
-                etAbreviation.setText(String.valueOf(ListeAModifier.get(postionliste).getAbrev()));
-                etNomComplet.setText(String.valueOf(ListeAModifier.get(postionliste).getNomComplet()));
-                etPointActuel.setText(String.valueOf(ListeAModifier.get(postionliste).getPointActuel()));
-                etInitiation.setText(String.valueOf(ListeAModifier.get(postionliste).getInitiation()));
-                etEntrainement.setText(String.valueOf(ListeAModifier.get(postionliste).getEntrainement()));
-                etMaitrise.setText(String.valueOf(ListeAModifier.get(postionliste).getMaitrise()));
-                etInitiationPoint.setText(String.valueOf(ListeAModifier.get(postionliste).getInitiationPoint()));
-                etEntrainementPoint.setText(String.valueOf(ListeAModifier.get(postionliste).getEntrainementPoint()));
-                etMaitrisePoint.setText(String.valueOf(ListeAModifier.get(postionliste).getMaitrisePoint()));
+                etCategorie.setText(String.valueOf(ListeAModifier.get(positionliste).getCategorie()));
+                etAbreviation.setText(String.valueOf(ListeAModifier.get(positionliste).getAbrev()));
+                etNomComplet.setText(String.valueOf(ListeAModifier.get(positionliste).getNomComplet()));
+                etPointActuel.setText(String.valueOf(ListeAModifier.get(positionliste).getPointActuel()));
+                etInitiation.setText(String.valueOf(ListeAModifier.get(positionliste).getInitiation()));
+                etEntrainement.setText(String.valueOf(ListeAModifier.get(positionliste).getEntrainement()));
+                etMaitrise.setText(String.valueOf(ListeAModifier.get(positionliste).getMaitrise()));
+                etInitiationPoint.setText(String.valueOf(ListeAModifier.get(positionliste).getInitiationPoint()));
+                etEntrainementPoint.setText(String.valueOf(ListeAModifier.get(positionliste).getEntrainementPoint()));
+                etMaitrisePoint.setText(String.valueOf(ListeAModifier.get(positionliste).getMaitrisePoint()));
 
+                etAbreviation.setVisibility(View.VISIBLE);
+                etNomComplet.setVisibility(View.VISIBLE);
+                etPointActuel.setVisibility(View.VISIBLE);
+                etInitiation.setVisibility(View.VISIBLE);
+                etEntrainement.setVisibility(View.VISIBLE);
+                etMaitrise.setVisibility(View.VISIBLE);
+                etInitiationPoint.setVisibility(View.VISIBLE);
+                etEntrainementPoint.setVisibility(View.VISIBLE);
+                etMaitrisePoint.setVisibility(View.VISIBLE);
                 break;
 
             case "Sortilèges":
-                etAbreviation.setText(String.valueOf(ListeAModifier.get(postionliste).getAbrev()));
-                etNomComplet.setText(String.valueOf(ListeAModifier.get(postionliste).getNomComplet()));
-                etDegats.setText(String.valueOf(ListeAModifier.get(postionliste).getDegats()));
-                etRegleSpeciale.setText(String.valueOf(ListeAModifier.get(postionliste).getRegleSpeciale()));
-                etInitiation.setText(String.valueOf(ListeAModifier.get(postionliste).getInitiation()));
-                etEntrainement.setText(String.valueOf(ListeAModifier.get(postionliste).getEntrainement()));
-                etMaitrise.setText(String.valueOf(ListeAModifier.get(postionliste).getMaitrise()));
-                etInitiationPoint.setText(String.valueOf(ListeAModifier.get(postionliste).getInitiationPoint()));
-                etEntrainementPoint.setText(String.valueOf(ListeAModifier.get(postionliste).getEntrainementPoint()));
-                etMaitrisePoint.setText(String.valueOf(ListeAModifier.get(postionliste).getMaitrisePoint()));
-                etNomComplet.setText("");
-                etNomComplet.setEnabled(false);
-                etNomComplet.setVisibility(View.INVISIBLE);
+                etCategorie.setText(String.valueOf(ListeAModifier.get(positionliste).getCategorie()));
+                etId.setText(String.valueOf(ListeAModifier.get(positionliste).getId()));
+                etAbreviation.setText(String.valueOf(ListeAModifier.get(positionliste).getAbrev()));
+                etNomComplet.setText(String.valueOf(ListeAModifier.get(positionliste).getNomComplet()));
+                etDegats.setText(String.valueOf(ListeAModifier.get(positionliste).getDegats()));
+                etRegleSpeciale.setText(String.valueOf(ListeAModifier.get(positionliste).getRegleSpeciale()));
+                etInitiation.setText(String.valueOf(ListeAModifier.get(positionliste).getInitiation()));
+                etEntrainement.setText(String.valueOf(ListeAModifier.get(positionliste).getEntrainement()));
+                etMaitrise.setText(String.valueOf(ListeAModifier.get(positionliste).getMaitrise()));
+                etInitiationPoint.setText(String.valueOf(ListeAModifier.get(positionliste).getInitiationPoint()));
+                etEntrainementPoint.setText(String.valueOf(ListeAModifier.get(positionliste).getEntrainementPoint()));
+                etMaitrisePoint.setText(String.valueOf(ListeAModifier.get(positionliste).getMaitrisePoint()));
+
+                etId.setVisibility(View.VISIBLE);
+                etAbreviation.setVisibility(View.VISIBLE);
+                etNomComplet.setVisibility(View.VISIBLE);
+                etDegats.setVisibility(View.VISIBLE);
+                etRegleSpeciale.setVisibility(View.VISIBLE);
+                etInitiation.setVisibility(View.VISIBLE);
+                etEntrainement.setVisibility(View.VISIBLE);
+                etMaitrise.setVisibility(View.VISIBLE);
+                etInitiationPoint.setVisibility(View.VISIBLE);
+                etEntrainementPoint.setVisibility(View.VISIBLE);
+                etMaitrisePoint.setVisibility(View.VISIBLE);
                 break;
-                //g
             default:
 
 

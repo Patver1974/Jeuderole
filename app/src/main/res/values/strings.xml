@@ -38,5 +38,25 @@
     <string name="SigleSuivant"><![CDATA[>>]]></string>
     <string name="Sigledebut"><![CDATA[|<<]]></string>
     <string name="Siglefin"><![CDATA[>>|]]></string>
+    <string name="sepdeuxpoints">:   </string>
+    <string name="id"><u>Id</u></string>
+    <string name="abreviation"><u>Abreviation</u></string>
+    <string name="categorie"><u>Categorie</u></string>
+    <string name="nom_complet"><u>Nom Complet</u></string>
+    <string name="points_maximum"><u>Points Maximum</u></string>
+    <string name="degats"><u>Dégats</u></string>
+    <string name="points_actuels"><u>Points Actuels</u></string>
+    <string name="regles_speciales"><u>Règles Spéciales</u></string>
+    <string name="initiation"><u>Initiation</u></string>
+    <string name="entrainement"><u>Entrainement</u></string>
+    <string name="maitrise"><u>Maîtrise</u></string>
+    <string name="points_initiation"><u>Points Initiation</u></string>
+    <string name="points_entrainement"><u>Points Entrainement</u></string>
+    <string name="points_maitrise"><u>Points Maîtrise</u></string>
+    <string name="reinitilisation_donnees">Réiniatilisation Données</string>
+    <string name="modifier">Modifier</string>
+    <string name="mise_zero_des_donnees">Mise à zéro des données</string>
+    <string name="ajouter">Ajouter</string>
+
 
 </resources>
