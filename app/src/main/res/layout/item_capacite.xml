@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bordertextlines"
         android:textColor="@color/black"
+        android:layout_marginVertical="1dp"
         android:textSize="@dimen/TaillePoliceTableau" />
     <TextView
         android:id="@+id/tv_item_capacite_abreviation"
@@ -17,6 +18,7 @@
         android:background="@drawable/bordertextlines"
         android:text=""
         android:textColor="@color/black"
+        android:layout_marginVertical="1dp"
         android:textSize="@dimen/TaillePoliceTableau" />
 
     <TextView
@@ -25,6 +27,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bordertextlines"
         android:textColor="@color/black"
+        android:layout_marginVertical="1dp"
         android:textSize="@dimen/TaillePoliceTableau" />
 
 
@@ -34,6 +37,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bordertextlines"
         android:textColor="@color/black"
+        android:layout_marginVertical="1dp"
         android:textSize="@dimen/TaillePoliceTableau" />
 
     <TextView
@@ -42,6 +46,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bordertextlines"
         android:textColor="@color/black"
+        android:layout_marginVertical="1dp"
         android:textSize="@dimen/TaillePoliceTableau" />
     <TextView
         android:id="@+id/tv_item_capacite_pointactuel"
@@ -49,6 +54,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bordertextlines"
         android:textColor="@color/black"
+        android:layout_marginVertical="1dp"
         android:textSize="@dimen/TaillePoliceTableau" />
     <TextView
         android:id="@+id/tv_item_capacite_initiation"
@@ -56,6 +62,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bordertextlines"
         android:textColor="@color/black"
+        android:layout_marginVertical="1dp"
         android:textSize="@dimen/TaillePoliceTableau" />
     <TextView
         android:id="@+id/tv_item_capacite_entrainement"
@@ -63,6 +70,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bordertextlines"
         android:textColor="@color/black"
+        android:layout_marginVertical="1dp"
         android:textSize="@dimen/TaillePoliceTableau" />
     <TextView
         android:id="@+id/tv_item_capacite_maitrise"
@@ -70,6 +78,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bordertextlines"
         android:textColor="@color/black"
+        android:layout_marginVertical="1dp"
         android:textSize="@dimen/TaillePoliceTableau" />
     <TextView
         android:id="@+id/tv_item_capacite_initiationpoint"
@@ -77,6 +86,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bordertextlines"
         android:textColor="@color/black"
+        android:layout_marginVertical="1dp"
         android:textSize="@dimen/TaillePoliceTableau" />
     <TextView
         android:id="@+id/tv_item_capacite_entrainementpoint"
@@ -84,6 +94,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bordertextlines"
         android:textColor="@color/black"
+        android:layout_marginVertical="1dp"
         android:textSize="@dimen/TaillePoliceTableau" />
     <TextView
         android:id="@+id/tv_item_capacite_matrisepoint"
@@ -91,6 +102,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bordertextlines"
         android:textColor="@color/black"
+        android:layout_marginVertical="1dp"
         android:textSize="@dimen/TaillePoliceTableau" />
 
     <TextView
@@ -99,6 +111,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bordertextlines"
         android:textColor="@color/black"
+        android:layout_marginVertical="1dp"
         android:textSize="@dimen/TaillePoliceTableau" />
 
 </LinearLayout>

@@ -41,7 +41,7 @@ public class AdapterCapacite extends RecyclerView.Adapter<AdapterCapacite.ViewHo
             tvInitiationPoint = view.findViewById(R.id.tv_item_capacite_initiationpoint);
             tvEntrainementPoint = view.findViewById(R.id.tv_item_capacite_entrainementpoint);
             tvMaitrisePoint = view.findViewById(R.id.tv_item_capacite_matrisepoint);
-            tvRegleSpeciale =view.findViewById(R.id.tv_item_capacite_reglespeciale);
+            tvRegleSpeciale = view.findViewById(R.id.tv_item_capacite_reglespeciale);
 
         }
 
@@ -81,176 +81,133 @@ public class AdapterCapacite extends RecyclerView.Adapter<AdapterCapacite.ViewHo
     public void onBindViewHolder(@NonNull AdapterCapacite.ViewHolder holder, int position) {
         String strCategorie;
         Capacite capacite = dataSet.get(position);
-        holder.tvAbreviation.setText(capacite.getAbrev());
-        holder.tvNomComplet.setText(capacite.getNomComplet());
-        holder.tvcategorie.setText(String.valueOf(capacite.getCategorie()));
-        holder.tvCapaciteMaximum.setText(String.valueOf(capacite.getMaxPoints()));
         strCategorie = capacite.getCategorie();
-        holder.tvDegats.setText(String.valueOf(capacite.getDegats()));
-        holder.tvPointActuel.setText(String.valueOf(capacite.getPointActuel()));
-        holder.tvInitiation.setText(String.valueOf(capacite.getInitiation()));
-        holder.tvEntrainement.setText(String.valueOf(capacite.getEntrainement()));
-        holder.tvMaitrise.setText(String.valueOf(capacite.getMaitrise()));
-        holder.tvInitiationPoint.setText(String.valueOf(capacite.getInitiationPoint()));
-        holder.tvEntrainementPoint.setText(String.valueOf(capacite.getEntrainementPoint()));
-        holder.tvMaitrisePoint.setText(String.valueOf(capacite.getMaitrisePoint()));
-        holder.tvRegleSpeciale.setText(String.valueOf(capacite.getRegleSpeciale()));
+
         switch (strCategorie) {
-          case "Capacités":
-              excapacites(holder);
-              break;
+            case "Capacités":
+                excapacites(holder, capacite);
+                break;
             case "5 Sens":
-                ex5sens(holder);
+                ex5sens(holder, capacite);
                 break;
             case "Compétences de combat":
-                exCompetencesCombat(holder);
+                exCompetencesCombat(holder, capacite);
                 break;
             case "Compétences de tir":
-                exCompetencesTir(holder);
+                exCompetencesTir(holder, capacite);
                 break;
             case "Compétences":
-                exCompetences(holder);
+                exCompetences(holder, capacite);
                 break;
             case "Compétences utilisées":
-                exCompetencesutilisees(holder);
+                exCompetencesutilisees(holder, capacite);
                 break;
             case "Compétences complexes":
-                exCompetencesComplexes(holder);
+                exCompetencesComplexes(holder, capacite);
                 break;
             case "Sortilèges":
-                exSortileges(holder);
+                exSortileges(holder, capacite);
                 break;
             default:
+                break;
         }
     }
 
-    private void exCompetencesComplexes(ViewHolder holder) {
-        //holder.tvAbreviation.setText("");
-        //holder.tvNomComplet.setText("");
-        holder.tvcategorie.setText("");
-        holder.tvCapaciteMaximum.setText("");
-        holder.tvDegats.setText("");
-        //holder.tvPointActuel.setText("");
-        holder.tvInitiation.setText("");
-        holder.tvEntrainement.setText("");
-        holder.tvMaitrise.setText("");
-        holder.tvInitiationPoint.setText("");
-        holder.tvEntrainementPoint.setText("");
-        holder.tvMaitrisePoint.setText("");
-        holder.tvRegleSpeciale.setText("");
-    }
+    private void exCompetencesComplexes(ViewHolder holder, Capacite capacite) {
+        holder.tvAbreviation.setText(capacite.getAbrev());
+        holder.tvNomComplet.setText(capacite.getNomComplet());
+        holder.tvPointActuel.setText(String.valueOf(capacite.getPointActuel()));
 
-    private void exCompetencesutilisees(ViewHolder holder) {
-        //holder.tvAbreviation.setText("");
-        //holder.tvNomComplet.setText("");
-        holder.tvcategorie.setText("");
-        holder.tvCapaciteMaximum.setText("");
-        holder.tvDegats.setText("");
-        //holder.tvPointActuel.setText("");
-        holder.tvInitiation.setText("");
-        holder.tvEntrainement.setText("");
-        holder.tvMaitrise.setText("");
-        holder.tvInitiationPoint.setText("");
-        holder.tvEntrainementPoint.setText("");
-        holder.tvMaitrisePoint.setText("");
-        holder.tvRegleSpeciale.setText("");
-    }
-
-    private void exCompetences(ViewHolder holder) {
-        //holder.tvAbreviation.setText("");
-        //holder.tvNomComplet.setText("");
-        holder.tvcategorie.setText("");
-        holder.tvCapaciteMaximum.setText("");
-        holder.tvDegats.setText("");
-        //holder.tvPointActuel.setText("");
-        holder.tvInitiation.setText("");
-        holder.tvEntrainement.setText("");
-        holder.tvMaitrise.setText("");
-        holder.tvInitiationPoint.setText("");
-        holder.tvEntrainementPoint.setText("");
-        holder.tvMaitrisePoint.setText("");
-        holder.tvRegleSpeciale.setText("");
-    }
-
-    private void exCompetencesTir(ViewHolder holder) {
-        //holder.tvAbreviation.setText("");
-        //holder.tvNomComplet.setText("");
-        holder.tvcategorie.setText("");
-        holder.tvCapaciteMaximum.setText("");
-        //holder.tvDegats.setText("");
-        //holder.tvPointActuel.setText("");
-        holder.tvInitiation.setText("");
-        holder.tvEntrainement.setText("");
-        holder.tvMaitrise.setText("");
-        holder.tvInitiationPoint.setText("");
-        holder.tvEntrainementPoint.setText("");
-        holder.tvMaitrisePoint.setText("");
-        //holder.tvRegleSpeciale.setText("");
-    }
-
-    private void exSortileges(AdapterCapacite.ViewHolder holder) {
-        //holder.tvAbreviation.setText("");
-        //holder.tvNomComplet.setText("");
-        holder.tvcategorie.setText("");
-        holder.tvCapaciteMaximum.setText("");
-        holder.tvDegats.setText("");
-        //holder.tvPointActuel.setText("");
-        holder.tvInitiation.setText("");
-        holder.tvEntrainement.setText("");
-        holder.tvMaitrise.setText("");
-        holder.tvInitiationPoint.setText("");
-        holder.tvEntrainementPoint.setText("");
-        holder.tvMaitrisePoint.setText("");
-        //holder.tvRegleSpeciale.setText("");
-    }
-
-    private void exCompetencesCombat(ViewHolder holder) {
-        //holder.tvAbreviation.setText("");
-        //holder.tvNomComplet.setText("");
-        holder.tvcategorie.setText("");
-        holder.tvCapaciteMaximum.setText("");
-        //holder.tvDegats.setText("");
-        holder.tvPointActuel.setText("");
-        holder.tvInitiation.setText("");
-        holder.tvEntrainement.setText("");
-        holder.tvMaitrise.setText("");
-        holder.tvInitiationPoint.setText("");
-        holder.tvEntrainementPoint.setText("");
-        holder.tvMaitrisePoint.setText("");
-        //holder.tvRegleSpeciale.setText("");
-    }
-
-    private void ex5sens(ViewHolder holder) {
-        holder.tvAbreviation.setText("");
-        //holder.tvNomComplet.setText("");
-        holder.tvcategorie.setText("");
-        //holder.tvCapaciteMaximum.setText("");
-        holder.tvDegats.setText("");
-        holder.tvPointActuel.setText("");
-        holder.tvInitiation.setText("");
-        holder.tvEntrainement.setText("");
-        holder.tvMaitrise.setText("");
-        holder.tvInitiationPoint.setText("");
-        holder.tvEntrainementPoint.setText("");
-        holder.tvMaitrisePoint.setText("");
-        holder.tvRegleSpeciale.setText("");
+        holder.tvAbreviation.setPadding(3, 0, 3, 0);
+        holder.tvNomComplet.setPadding(3, 0, 3, 0);
+        holder.tvPointActuel.setPadding(3, 0, 3, 0);
 
     }
 
-    private void excapacites(ViewHolder holder) {
-        //holder.tvAbreviation.setText("");
-        //holder.tvNomComplet.setText("");
-        holder.tvcategorie.setText("");
-        //holder.tvCapaciteMaximum.setText("");
-        holder.tvDegats.setText("");
-        holder.tvPointActuel.setText("");
-        holder.tvInitiation.setText("");
-        holder.tvEntrainement.setText("");
-        holder.tvMaitrise.setText("");
-        holder.tvInitiationPoint.setText("");
-        holder.tvEntrainementPoint.setText("");
-        holder.tvMaitrisePoint.setText("");
-        holder.tvRegleSpeciale.setText("");
+    private void exCompetencesutilisees(ViewHolder holder, Capacite capacite) {
+        holder.tvAbreviation.setText(capacite.getAbrev());
+        holder.tvNomComplet.setText(capacite.getNomComplet());
+        holder.tvPointActuel.setText(String.valueOf(capacite.getPointActuel()));
+
+        holder.tvAbreviation.setPadding(3, 0, 3, 0);
+        holder.tvNomComplet.setPadding(3, 0, 3, 0);
+        holder.tvPointActuel.setPadding(3, 0, 3, 0);
+
+    }
+
+    private void exCompetences(ViewHolder holder, Capacite capacite) {
+
+        holder.tvAbreviation.setText(capacite.getAbrev());
+        holder.tvNomComplet.setText(capacite.getNomComplet());
+        holder.tvPointActuel.setText(String.valueOf(capacite.getPointActuel()));
+        holder.tvRegleSpeciale.setText(String.valueOf(capacite.getRegleSpeciale()));
+
+        holder.tvAbreviation.setPadding(3, 0, 3, 0);
+        holder.tvNomComplet.setPadding(3, 0, 3, 0);
+        holder.tvPointActuel.setPadding(3, 0, 3, 0);
+        holder.tvRegleSpeciale.setPadding(3, 0, 3, 0);
+    }
+
+    private void exCompetencesTir(ViewHolder holder, Capacite capacite) {
+
+        holder.tvAbreviation.setText(capacite.getAbrev());
+        holder.tvNomComplet.setText(capacite.getNomComplet());
+        holder.tvDegats.setText(capacite.getDegats());
+        holder.tvPointActuel.setText(String.valueOf(capacite.getPointActuel()));
+        holder.tvRegleSpeciale.setText(String.valueOf(capacite.getRegleSpeciale()));
+
+        holder.tvAbreviation.setPadding(3, 0, 3, 0);
+        holder.tvNomComplet.setPadding(3, 0, 3, 0);
+        holder.tvDegats.setPadding(3,0,3,0);
+        holder.tvPointActuel.setPadding(3, 0, 3, 0);
+        holder.tvRegleSpeciale.setPadding(3, 0, 3, 0);
+    }
+
+    private void exSortileges(ViewHolder holder, Capacite capacite) {
+
+        holder.tvAbreviation.setText(capacite.getAbrev());
+        holder.tvNomComplet.setText(capacite.getNomComplet());
+        holder.tvPointActuel.setText(String.valueOf(capacite.getPointActuel()));
+        holder.tvRegleSpeciale.setText(String.valueOf(capacite.getRegleSpeciale()));
+
+        holder.tvAbreviation.setPadding(3, 0, 3, 0);
+        holder.tvNomComplet.setPadding(3, 0, 3, 0);
+        holder.tvPointActuel.setPadding(3, 0, 3, 0);
+        holder.tvRegleSpeciale.setPadding(3, 0, 3, 0);
+    }
+
+    private void exCompetencesCombat(ViewHolder holder, Capacite capacite) {
+
+        holder.tvAbreviation.setText(capacite.getAbrev());
+        holder.tvNomComplet.setText(capacite.getNomComplet());
+        holder.tvDegats.setText(String.valueOf(capacite.getDegats()));
+        holder.tvRegleSpeciale.setText(String.valueOf(capacite.getRegleSpeciale()));
+
+        holder.tvAbreviation.setPadding(3, 0, 3, 0);
+        holder.tvNomComplet.setPadding(3, 0, 3, 0);
+        holder.tvDegats.setPadding(3, 0, 3, 0);
+        holder.tvRegleSpeciale.setPadding(3, 0, 3, 0);
+    }
+
+    private void ex5sens(ViewHolder holder, Capacite capacite) {
+
+        holder.tvNomComplet.setText(capacite.getNomComplet());
+        holder.tvCapaciteMaximum.setText(String.valueOf(capacite.getMaxPoints()));
+
+        holder.tvNomComplet.setPadding(3, 0, 3, 0);
+        holder.tvCapaciteMaximum.setPadding(3, 0, 3, 0);
+    }
+
+    private void excapacites(ViewHolder holder, Capacite capacite) {
+        holder.tvAbreviation.setText(capacite.getAbrev());
+        holder.tvNomComplet.setText(capacite.getNomComplet());
+        holder.tvCapaciteMaximum.setText(String.valueOf(capacite.getMaxPoints()));
+
+        holder.tvAbreviation.setPadding(3, 0, 3, 0);
+        holder.tvNomComplet.setPadding(3, 0, 3, 0);
+        holder.tvCapaciteMaximum.setPadding(3, 0, 3, 0);
+
+
     }
 
     @Override

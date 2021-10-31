@@ -81,7 +81,7 @@ public class FragmentCapacite extends Fragment implements AdapterView.OnItemSele
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_capacite, container, false);
-        btAjouter = v.findViewById(R.id.bt_capacite_ajouter);
+
         rvActivite = v.findViewById(R.id.rv_capacite);
         spinnerDiffCompetences = v.findViewById(R.id.sp_capacite_categoriePersonnage);
 
@@ -104,37 +104,17 @@ public class FragmentCapacite extends Fragment implements AdapterView.OnItemSele
         spinnerDiffCompetences.setOnItemSelectedListener(this);
 
 
+        //dao = new JeuRoleDao(getContext());
+        //dao.openReadable();
+        //listecapacite = dao.getAll();
+        ///dao.close();
 
 
-        btAjouter.setOnClickListener(v1 -> {
-            capacite = new Capacite("Capacités", "abrev", "nomcomplet", 40, "degat", 50, "reglespeciale", "initiation", "entrainemnt", "maitrise", 10, 15, 30);
-            capacite = new Capacite("5 Sens", "abrev", "nomcomplet", 40, "degat", 50, "reglespeciale", "initiation", "entrainemnt", "maitrise", 10, 15, 30);
-
-
-
-            JeuRoleDao jeuRoleDao = new JeuRoleDao(v1.getContext());
-            jeuRoleDao.openWritable();
-            jeuRoleDao.insert(capacite);
-            jeuRoleDao.close();
-            Capacite capa2;
-
-            dao = new JeuRoleDao(v1.getContext());
-            dao.openReadable();
-            listecapacite = dao.getAll();
-            dao.close();
-            Toast.makeText(getView().getContext(), String.valueOf(listecapacite.size()), Toast.LENGTH_LONG).show();
-        });
-        dao = new JeuRoleDao(getContext());
-        dao.openReadable();
-        listecapacite = dao.getAll();
-        dao.close();
-
-
-        AdapterCapacite adapater = new AdapterCapacite(getContext(), listecapacite);
-        rvActivite.setAdapter(adapater);
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
-        llm.setOrientation(RecyclerView.VERTICAL);
-        rvActivite.setLayoutManager(llm);
+        //AdapterCapacite adapater = new AdapterCapacite(getContext(), listecapacite);
+        //rvActivite.setAdapter(adapater);
+        //LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        //llm.setOrientation(RecyclerView.VERTICAL);
+        //rvActivite.setLayoutManager(llm);
 
 
         return v;
