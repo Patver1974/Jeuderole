@@ -14,7 +14,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jeuderole.Adapter.AdapterCapacite;
@@ -38,6 +40,10 @@ public class FragmentCapacite extends Fragment implements AdapterView.OnItemSele
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
+    private TextView tvAbreviation, tvNomComplet, tvCapaciteMaximum, tvcategorie, tvDegats, tvPointActuel,
+            tvInitiation, tvEntrainement, tvMaitrise, tvInitiationPoint, tvEntrainementPoint, tvMaitrisePoint, tvRegleSpeciale;
+private Integer tailleTextView;
+private static final Integer  hauteur_Tv = 43 ;
     private String mParam1;
     private String mParam2;
     private RecyclerView rvActivite;
@@ -45,6 +51,9 @@ public class FragmentCapacite extends Fragment implements AdapterView.OnItemSele
     private List<Capacite> listecapacite = new ArrayList<>();
     private Capacite capacite;
     private Spinner spinnerDiffCompetences;
+    private LinearLayout lltitreun, lltitredeux;
+    private static final String[] titlename = new String[] {"Catégorie","Abrév.","Nom","Point Max","Dégats","Point Actuel","Règle Spéciale","Initiation","Entraînement","Maîtrise","Point Initiation","Point Entrain.","Point Maîtrise"};
+
 
     public FragmentCapacite() {
         // Required empty public constructor
@@ -84,6 +93,21 @@ public class FragmentCapacite extends Fragment implements AdapterView.OnItemSele
 
         rvActivite = v.findViewById(R.id.rv_capacite);
         spinnerDiffCompetences = v.findViewById(R.id.sp_capacite_categoriePersonnage);
+        tvAbreviation = v.findViewById(R.id.tv_capacite_abreviation);
+        tvNomComplet = v.findViewById(R.id.tv_capacite_nomcomplet);
+        tvCapaciteMaximum = v.findViewById(R.id.tv_capacite_maxpoints);
+        tvcategorie = v.findViewById(R.id.tv_capacite_categorie);
+        tvDegats = v.findViewById(R.id.tv_capacite_degats);
+        tvPointActuel = v.findViewById(R.id.tv_capacite_pointactuel);
+        tvInitiation = v.findViewById(R.id.tv_capacite_initiation);
+        tvEntrainement = v.findViewById(R.id.tv_capacite_entrainement);
+        tvMaitrise = v.findViewById(R.id.tv_capacite_maitrise);
+        tvInitiationPoint = v.findViewById(R.id.tv_capacite_initiationpoint);
+        tvEntrainementPoint = v.findViewById(R.id.tv_capacite_entrainementpoint);
+        tvMaitrisePoint = v.findViewById(R.id.tv_capacite_matrisepoint);
+        tvRegleSpeciale = v.findViewById(R.id.tv_capacite_reglespeciale);
+        lltitreun = v.findViewById(R.id.ll_capacite_titre_premierligne);
+        lltitredeux = v.findViewById(R.id.ll_capacite_titre_deuxiemeligne);
 
 
 //spinner
@@ -128,11 +152,159 @@ public class FragmentCapacite extends Fragment implements AdapterView.OnItemSele
         dao.openReadable();
         listecapacite = dao.getAllWithCategorie(spinnerDiffCompetences.getSelectedItem().toString());
         dao.close();
+        if (!listecapacite.isEmpty()) {AfficherTitre(spinnerDiffCompetences.getSelectedItem().toString());}
         AdapterCapacite adapater = new AdapterCapacite(getContext(), listecapacite);
         rvActivite.setAdapter(adapater);
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         llm.setOrientation(RecyclerView.VERTICAL);
         rvActivite.setLayoutManager(llm);
+
+    }
+
+    private void AfficherTitre(String categorieSelectionnee) {
+        tailleTextView=0;
+        switch(categorieSelectionnee){
+
+                case "Capacités":
+                    excapacites();
+                    break;
+                case "5 Sens":
+                    ex5sens();
+                    break;
+                case "Compétences de combat":
+                    exCompetencesCombat();
+                    break;
+                case "Compétences de tir":
+                    exCompetencesTir();
+                    break;
+                case "Compétences":
+                    exCompetences();
+                    break;
+                case "Compétences utilisées":
+                    exCompetencesutilisees();
+                    break;
+                case "Compétences complexes":
+                    exCompetencesComplexes();
+                    break;
+                case "Sortilèges":
+                    exSortileges();
+                    break;
+                default:
+                    break;
+
+
+
+        }
+
+    }
+
+    private void exSortileges() {
+        tvAbreviation.setText(titlename[1]);
+        tvNomComplet.setText(titlename[2].toString());
+        tvPointActuel.setText(titlename[5].toString());
+        tvRegleSpeciale.setText(titlename[6].toString());
+
+        tvAbreviation.setPadding(3, 0, 3, 0);
+        tvNomComplet.setPadding(3, 0, 3, 0);
+        tvPointActuel.setPadding(3, 0, 3, 0);
+        tvRegleSpeciale.setPadding(3, 0, 3, 0);
+        tvRegleSpeciale.setVisibility(View.VISIBLE);
+        tvRegleSpeciale.setHeight(hauteur_Tv);
+
+    }
+
+    private void exCompetencesComplexes() {
+        tvAbreviation.setText(titlename[1]);
+        tvNomComplet.setText(titlename[2].toString());
+        tvPointActuel.setText(titlename[5].toString());
+
+        tvAbreviation.setPadding(3, 0, 3, 0);
+        tvNomComplet.setPadding(3, 0, 3, 0);
+        tvPointActuel.setPadding(3, 0, 3, 0);
+
+        tvRegleSpeciale.setVisibility(View.INVISIBLE);
+
+    }
+
+    private void exCompetencesutilisees() {
+        tvAbreviation.setText(titlename[1]);
+        tvNomComplet.setText(titlename[2].toString());
+        tvPointActuel.setText(titlename[5].toString());
+
+        tvAbreviation.setPadding(3, 0, 3, 0);
+        tvNomComplet.setPadding(3, 0, 3, 0);
+        tvPointActuel.setPadding(3, 0, 3, 0);
+
+        tvRegleSpeciale.setVisibility(View.INVISIBLE);
+
+    }
+
+    private void exCompetences() {
+        tvAbreviation.setText(titlename[1]);
+        tvNomComplet.setText(titlename[2].toString());
+        tvPointActuel.setText(titlename[5].toString());
+        tvRegleSpeciale.setText(titlename[6].toString());
+
+        tvAbreviation.setPadding(3, 0, 3, 0);
+        tvNomComplet.setPadding(3, 0, 3, 0);
+        tvPointActuel.setPadding(3, 0, 3, 0);
+        tvRegleSpeciale.setPadding(3, 0, 3, 0);
+        tvRegleSpeciale.setVisibility(View.VISIBLE);
+        tvRegleSpeciale.setHeight(hauteur_Tv);
+    }
+
+    private void exCompetencesTir() {
+        tvAbreviation.setText(titlename[1]);
+        tvNomComplet.setText(titlename[2].toString());
+        tvDegats.setText(titlename[4].toString());
+        tvPointActuel.setText(titlename[5].toString());
+        tvRegleSpeciale.setText(titlename[6].toString());
+
+        tvAbreviation.setPadding(3, 0, 3, 0);
+        tvNomComplet.setPadding(3, 0, 3, 0);
+        tvDegats.setPadding(3, 0, 3, 0);
+        tvPointActuel.setPadding(3, 0, 3, 0);
+        tvRegleSpeciale.setPadding(3, 0, 3, 0);
+
+        tvRegleSpeciale.setVisibility(View.VISIBLE);
+        tvRegleSpeciale.setHeight(hauteur_Tv);
+    }
+
+    private void exCompetencesCombat() {
+        tvNomComplet.setText(titlename[2].toString());
+        tvCapaciteMaximum.setText(titlename[3].toString());
+
+        tvNomComplet.setPadding(3, 0, 3, 0);
+        tvCapaciteMaximum.setPadding(3, 0, 3, 0);
+
+        tvRegleSpeciale.setVisibility(View.INVISIBLE);
+
+    }
+
+    private void ex5sens() {
+
+        tvNomComplet.setText(titlename[2].toString());
+        tvCapaciteMaximum.setText(titlename[3].toString());
+
+        tvNomComplet.setPadding(3, 0, 3, 0);
+        tvCapaciteMaximum.setPadding(3, 0, 3, 0);
+
+        tvRegleSpeciale.setVisibility(View.INVISIBLE);
+
+    }
+
+    private void excapacites() {
+
+        tvAbreviation.setText(titlename[1]);
+        tvNomComplet.setText(titlename[2].toString());
+        tvCapaciteMaximum.setText(titlename[3].toString());
+
+        tvAbreviation.setPadding(3, 0, 3, 0);
+        tvNomComplet.setPadding(3, 0, 3, 0);
+        tvCapaciteMaximum.setPadding(3, 0, 3, 0);
+
+        tvRegleSpeciale.setVisibility(View.INVISIBLE);
+
 
     }
 

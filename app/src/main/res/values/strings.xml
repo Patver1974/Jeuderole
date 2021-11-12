@@ -26,6 +26,7 @@
     <string name="menu_carte">Carte</string>
     <string name="menu_capacite">Capacite</string>
     <string name="menu_modification">Modification</string>
+    <string name="menu_de">Dé aléatoire</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -57,6 +58,13 @@
     <string name="modifier">Modifier</string>
     <string name="mise_zero_des_donnees">Mise à zéro des données</string>
     <string name="ajouter">Ajouter</string>
+    <string name="de6">Dé 6</string>
+    <string name="de12">Dé 12</string>
+    <string name="de100">Dé 100</string>
+    <string name="choisisser_un_d_al_atoire">Choisissez
+        un dé aléatoire</string>
+    <string name="de_face_un">dé face un</string>
+    <string name="de_face_deux">de face deux</string>
 
 
 </resources>

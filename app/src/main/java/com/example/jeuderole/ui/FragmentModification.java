@@ -532,6 +532,10 @@ public class FragmentModification extends Fragment implements AdapterView.OnItem
                 etInitiationPoint.setVisibility(View.VISIBLE);
                 etEntrainementPoint.setVisibility(View.VISIBLE);
                 etMaitrisePoint.setVisibility(View.VISIBLE);
+
+
+
+
                 break;
             default:
 

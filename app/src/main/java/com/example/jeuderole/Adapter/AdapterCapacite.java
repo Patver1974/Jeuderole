@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.jeuderole.R;
@@ -24,6 +25,7 @@ public class AdapterCapacite extends RecyclerView.Adapter<AdapterCapacite.ViewHo
 
         private TextView tvAbreviation, tvNomComplet, tvCapaciteMaximum, tvcategorie, tvDegats, tvPointActuel,
                 tvInitiation, tvEntrainement, tvMaitrise, tvInitiationPoint, tvEntrainementPoint, tvMaitrisePoint, tvRegleSpeciale;
+        private static final String[] titlename = new String[] {"Catégorie","Abrév.","Nom","Point Max","Dégats","Point Actuel","Règle Spéciale","Initiation","Entraînement","Maîtrise","Point Initiation","Point Entrain.","Point Maîtrise"};
 
 
         public ViewHolder(@NonNull View view) {
@@ -73,6 +75,9 @@ public class AdapterCapacite extends RecyclerView.Adapter<AdapterCapacite.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_capacite, parent, false);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(RecyclerView.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.setMargins(0,3,0,3);
+        view.setLayoutParams(params);
         return new ViewHolder(view);
     }
 
@@ -122,6 +127,8 @@ public class AdapterCapacite extends RecyclerView.Adapter<AdapterCapacite.ViewHo
         holder.tvNomComplet.setPadding(3, 0, 3, 0);
         holder.tvPointActuel.setPadding(3, 0, 3, 0);
 
+        holder.tvRegleSpeciale.setVisibility(View.INVISIBLE);
+        holder.tvRegleSpeciale.setHeight(0);
     }
 
     private void exCompetencesutilisees(ViewHolder holder, Capacite capacite) {
@@ -133,6 +140,8 @@ public class AdapterCapacite extends RecyclerView.Adapter<AdapterCapacite.ViewHo
         holder.tvNomComplet.setPadding(3, 0, 3, 0);
         holder.tvPointActuel.setPadding(3, 0, 3, 0);
 
+        holder.tvRegleSpeciale.setVisibility(View.INVISIBLE);
+        holder.tvRegleSpeciale.setHeight(0);
     }
 
     private void exCompetences(ViewHolder holder, Capacite capacite) {
@@ -196,6 +205,9 @@ public class AdapterCapacite extends RecyclerView.Adapter<AdapterCapacite.ViewHo
 
         holder.tvNomComplet.setPadding(3, 0, 3, 0);
         holder.tvCapaciteMaximum.setPadding(3, 0, 3, 0);
+
+        holder.tvRegleSpeciale.setVisibility(View.INVISIBLE);
+        holder.tvRegleSpeciale.setHeight(0);
     }
 
     private void excapacites(ViewHolder holder, Capacite capacite) {
@@ -206,6 +218,9 @@ public class AdapterCapacite extends RecyclerView.Adapter<AdapterCapacite.ViewHo
         holder.tvAbreviation.setPadding(3, 0, 3, 0);
         holder.tvNomComplet.setPadding(3, 0, 3, 0);
         holder.tvCapaciteMaximum.setPadding(3, 0, 3, 0);
+
+        holder.tvRegleSpeciale.setVisibility(View.INVISIBLE);
+        holder.tvRegleSpeciale.setHeight(0);
 
 
     }
