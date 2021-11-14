@@ -29,7 +29,7 @@ import java.util.regex.PatternSyntaxException;
  * create an instance of this fragment.
  */
 public class FragmentModification extends Fragment implements AdapterView.OnItemSelectedListener, View.OnClickListener {
-
+private Long IdActuel = Long.valueOf("0");
     private Button btReinitialiser, btModifier, btMiseAZero, btAjouter;
     private Button btSuivant, btPrecedent;
     private Button btDebut, btFin;
@@ -326,7 +326,8 @@ public class FragmentModification extends Fragment implements AdapterView.OnItem
         testErreur = controleChamp();
 
         if (testErreur == false) {
-            Long idCapacite = Long.valueOf(etId.getText().toString());
+
+            Long idCapacite = IdActuel;
 
             dao.openWritable();
             Capacite capaciteItem = new Capacite(categorieSelectionnee, etAbreviation.getText().toString(),
@@ -350,6 +351,8 @@ public class FragmentModification extends Fragment implements AdapterView.OnItem
         String tmppointinitiationstr = etInitiationPoint.getText().toString().trim();
         String tmppointentrainementstr = etEntrainementPoint.getText().toString().trim();
         String tmppointmaitrisestr = etMaitrisePoint.getText().toString().trim();
+        String tmpAbreviation = etAbreviation.getText().toString().trim();
+        String tmpNomComplet = etNomComplet.getText().toString().trim();
 
         tmpmaxpointstr = tmpmaxpointstr.isEmpty() ? "0" : tmpmaxpointstr;
         tmppointactuelstr = tmppointactuelstr.isEmpty() ? "0" : tmppointactuelstr;
@@ -357,11 +360,23 @@ public class FragmentModification extends Fragment implements AdapterView.OnItem
         tmppointentrainementstr = tmppointentrainementstr.isEmpty() ? "0" : tmppointentrainementstr;
         tmppointmaitrisestr = tmppointmaitrisestr.isEmpty() ? "0" : tmppointmaitrisestr;
 
+
         tmpmaxpointint = null;
         tmppointactuelint = null;
         tmppointinitiationint = null;
         tmppointentrainementint = null;
         tmppointmaitriseint = null;
+
+        if (tmpAbreviation.length() > 5) {
+            Toast.makeText(getContext(), "Longueur abréviation trop longue (max 5 caractères !!!)", Toast.LENGTH_LONG).show();
+            testErreur = true;
+        }
+        if (tmpNomComplet.length() > 40) {
+            Toast.makeText(getContext(), "Longueur abréviation trop longue (max 40 caractères !!!)", Toast.LENGTH_LONG).show();
+            testErreur = true;
+        }
+//TODO faire les diffèrents controles possible et inimaginable
+
 
         if (Pattern.matches("^[0-9]+$", tmpmaxpointstr)) {
             tmpmaxpointint = Integer.valueOf(tmpmaxpointstr);
@@ -400,6 +415,7 @@ public class FragmentModification extends Fragment implements AdapterView.OnItem
         return testErreur;
     }
 
+
     private void MiseAzero() {
         etId.setText("");
         etAbreviation.setText("");
@@ -422,7 +438,7 @@ public class FragmentModification extends Fragment implements AdapterView.OnItem
     private void Afficherdonnee() {
         MiseAzero();
         tvIndex.setText(String.valueOf(positionliste));
-
+        IdActuel = ListeAModifier.get(positionliste).getId();
         etNomComplet.setText("");
 //        etId.setText(String.valueOf(ListeAModifier.get(positionliste).getId()));
 //        etAbreviation.setText(String.valueOf(ListeAModifier.get(positionliste).getAbrev()));
@@ -442,7 +458,7 @@ public class FragmentModification extends Fragment implements AdapterView.OnItem
         switch (categorieSelectionnee) {
 
             case "Capacités":
-                //etCategorie.setText(String.valueOf(ListeAModifier.get(positionliste).getCategorie()));
+
                 etAbreviation.setText(String.valueOf(ListeAModifier.get(positionliste).getAbrev()));
                 etNomComplet.setText(String.valueOf(ListeAModifier.get(positionliste).getNomComplet()));
                 etMaxPoint.setText(String.valueOf(ListeAModifier.get(positionliste).getMaxPoints()));
