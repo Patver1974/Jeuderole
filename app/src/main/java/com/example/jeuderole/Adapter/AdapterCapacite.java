@@ -2,11 +2,11 @@ package com.example.jeuderole.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.location.Location;
-import android.location.LocationManager;
+
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.example.jeuderole.R;
 import com.example.jeuderole.models.Capacite;
 
-import java.util.Calendar;
+
 import java.util.List;
 
 public class AdapterCapacite extends RecyclerView.Adapter<AdapterCapacite.ViewHolder> {
@@ -129,6 +129,12 @@ public class AdapterCapacite extends RecyclerView.Adapter<AdapterCapacite.ViewHo
 
         holder.tvRegleSpeciale.setVisibility(View.INVISIBLE);
         holder.tvRegleSpeciale.setHeight(0);
+
+        holder.tvAbreviation.setWidth(100);
+        holder.tvNomComplet.setWidth(400);
+        holder.tvPointActuel.setWidth(100);
+
+        holder.tvPointActuel.setGravity(Gravity.CENTER_HORIZONTAL);
     }
 
     private void exCompetencesutilisees(ViewHolder holder, Capacite capacite) {
@@ -142,19 +148,35 @@ public class AdapterCapacite extends RecyclerView.Adapter<AdapterCapacite.ViewHo
 
         holder.tvRegleSpeciale.setVisibility(View.INVISIBLE);
         holder.tvRegleSpeciale.setHeight(0);
+
+        holder.tvAbreviation.setWidth(100);
+        holder.tvNomComplet.setWidth(400);
+        holder.tvPointActuel.setWidth(100);
+
+        holder.tvPointActuel.setGravity(Gravity.CENTER_HORIZONTAL);
     }
 
     private void exCompetences(ViewHolder holder, Capacite capacite) {
 
         holder.tvAbreviation.setText(capacite.getAbrev());
         holder.tvNomComplet.setText(capacite.getNomComplet());
+        holder.tvCapaciteMaximum.setText(String.valueOf(capacite.getMaxPoints()));
         holder.tvPointActuel.setText(String.valueOf(capacite.getPointActuel()));
         holder.tvRegleSpeciale.setText(String.valueOf(capacite.getRegleSpeciale()));
 
         holder.tvAbreviation.setPadding(3, 0, 3, 0);
+        holder.tvCapaciteMaximum.setPadding(3, 0, 3, 0);
         holder.tvNomComplet.setPadding(3, 0, 3, 0);
         holder.tvPointActuel.setPadding(3, 0, 3, 0);
         holder.tvRegleSpeciale.setPadding(3, 0, 3, 0);
+
+        holder.tvAbreviation.setWidth(100);
+        holder.tvCapaciteMaximum.setWidth(100);
+        holder.tvNomComplet.setWidth(400);
+        holder.tvPointActuel.setWidth(100);
+
+        holder.tvCapaciteMaximum.setGravity(Gravity.CENTER_HORIZONTAL);
+        holder.tvPointActuel.setGravity(Gravity.CENTER_HORIZONTAL);
     }
 
     private void exCompetencesTir(ViewHolder holder, Capacite capacite) {
@@ -170,6 +192,15 @@ public class AdapterCapacite extends RecyclerView.Adapter<AdapterCapacite.ViewHo
         holder.tvDegats.setPadding(3,0,3,0);
         holder.tvPointActuel.setPadding(3, 0, 3, 0);
         holder.tvRegleSpeciale.setPadding(3, 0, 3, 0);
+
+        holder.tvAbreviation.setWidth(100);
+        holder.tvNomComplet.setWidth(400);
+        holder.tvDegats.setWidth(100);
+        holder.tvPointActuel.setWidth(100);
+
+        holder.tvDegats.setGravity(Gravity.CENTER_HORIZONTAL);
+        holder.tvPointActuel.setGravity(Gravity.CENTER_HORIZONTAL);
+
     }
 
     private void exSortileges(ViewHolder holder, Capacite capacite) {
@@ -183,6 +214,12 @@ public class AdapterCapacite extends RecyclerView.Adapter<AdapterCapacite.ViewHo
         holder.tvNomComplet.setPadding(3, 0, 3, 0);
         holder.tvPointActuel.setPadding(3, 0, 3, 0);
         holder.tvRegleSpeciale.setPadding(3, 0, 3, 0);
+
+        holder.tvAbreviation.setWidth(100);
+        holder.tvNomComplet.setWidth(400);
+        holder.tvPointActuel.setWidth(100);
+
+        holder.tvPointActuel.setGravity(Gravity.CENTER_HORIZONTAL);
     }
 
     private void exCompetencesCombat(ViewHolder holder, Capacite capacite) {
@@ -196,6 +233,12 @@ public class AdapterCapacite extends RecyclerView.Adapter<AdapterCapacite.ViewHo
         holder.tvNomComplet.setPadding(3, 0, 3, 0);
         holder.tvDegats.setPadding(3, 0, 3, 0);
         holder.tvRegleSpeciale.setPadding(3, 0, 3, 0);
+
+        holder.tvAbreviation.setWidth(100);
+        holder.tvNomComplet.setWidth(400);
+        holder.tvDegats.setWidth(100);
+
+        holder.tvDegats.setGravity(Gravity.CENTER_HORIZONTAL);
     }
 
     private void ex5sens(ViewHolder holder, Capacite capacite) {
@@ -208,6 +251,11 @@ public class AdapterCapacite extends RecyclerView.Adapter<AdapterCapacite.ViewHo
 
         holder.tvRegleSpeciale.setVisibility(View.INVISIBLE);
         holder.tvRegleSpeciale.setHeight(0);
+
+        holder.tvNomComplet.setWidth(400);
+        holder.tvCapaciteMaximum.setWidth(100);
+
+        holder.tvCapaciteMaximum.setGravity(Gravity.CENTER_HORIZONTAL);
     }
 
     private void excapacites(ViewHolder holder, Capacite capacite) {
@@ -222,6 +270,11 @@ public class AdapterCapacite extends RecyclerView.Adapter<AdapterCapacite.ViewHo
         holder.tvRegleSpeciale.setVisibility(View.INVISIBLE);
         holder.tvRegleSpeciale.setHeight(0);
 
+        holder.tvAbreviation.setWidth(100);
+        holder.tvNomComplet.setWidth(400);
+        holder.tvCapaciteMaximum.setWidth(100);
+
+        holder.tvCapaciteMaximum.setGravity(Gravity.CENTER_HORIZONTAL);
 
     }
 
