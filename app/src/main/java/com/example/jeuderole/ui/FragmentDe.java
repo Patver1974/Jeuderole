@@ -49,7 +49,7 @@ private ListView lvHistorique;
      * @param param2 Parameter 2.
      * @return A new instance of fragment FragmentDe.
      */
-    // TODO: Rename and change types and number of parameters
+    // TODO:  Si une capacité est vide il y a une erreur
     public static FragmentDe newInstance(String param1, String param2) {
         FragmentDe fragment = new FragmentDe();
         Bundle args = new Bundle();
