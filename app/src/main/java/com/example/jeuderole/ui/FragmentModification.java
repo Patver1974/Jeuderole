@@ -49,6 +49,7 @@ private Long IdActuel = Long.valueOf("0");
     Integer tmppointinitiationint = null;
     Integer tmppointentrainementint = null;
     Integer tmppointmaitriseint = null;
+    private String positionbuttonAddDel ="Supprimer";
 
     public FragmentModification() {
         // Required empty public constructor
@@ -132,8 +133,7 @@ private Long IdActuel = Long.valueOf("0");
     private void Inititialisation() {
         RendreTextInvisible();
         MettrePaddingZero();
-        btAjouter.setVisibility(View.INVISIBLE
-        );
+        btAjouter.setVisibility(View.VISIBLE);
 
         ListeAModifier.clear();
         dao = new JeuRoleDao(getContext());
@@ -187,20 +187,36 @@ private Long IdActuel = Long.valueOf("0");
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        CategorieSelectionnee();
+
+    }
+
+    private void CategorieSelectionnee() {
         RendreTextInvisible();
         MettrePaddingZero();
-        btAjouter.setVisibility(View.INVISIBLE
-        );
+        positionbuttonAddDel = "Supprimer";
+        Apparencebouton(positionbuttonAddDel);
 
+
+        btMiseAZero.setVisibility(View.VISIBLE);
         MiseAJourBDD();
-
-
         positionliste = 0;
         if (maxIdListeCapacite >= 0) {
             Afficherdonnee();
         }
+        String nbrEnregistrement = String.valueOf(maxIdListeCapacite+1) + " enregistrements";
+        Toast.makeText(getView().getContext(), nbrEnregistrement , Toast.LENGTH_SHORT).show();
+    }
 
-        Toast.makeText(getView().getContext(), String.valueOf(maxIdListeCapacite), Toast.LENGTH_LONG).show();
+    private void Apparencebouton(String position) {
+        if (position=="Supprimer"){
+            btAjouter.setText("Supprimer");
+            btMiseAZero.setVisibility(View.VISIBLE);
+        }
+        if (position=="Ajouter"){
+            btAjouter.setText("Ajouter");
+            btMiseAZero.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void MiseAJourBDD() {
@@ -221,52 +237,65 @@ private Long IdActuel = Long.valueOf("0");
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_capacitemodification_precedent:
+                positionbuttonAddDel = "Supprimer";
+                Apparencebouton(positionbuttonAddDel);
                 if (maxIdListeCapacite == -2) {
                     MiseAJourBDD();
                 }
                 if (positionliste != 0) {
                     if (maxIdListeCapacite == -1) {
-                        Toast.makeText(getContext(), "Pas d'enregistrement !!!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Pas d'enregistrement !!!", Toast.LENGTH_SHORT).show();
+                        MiseaZeroCasDelete();
                     } else {
                         positionliste = positionliste - 1;
                         Afficherdonnee();
                     }
                 } else {
-                    Toast.makeText(getContext(), "Debut du fichier", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Debut du fichier", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.bt_capacitemodification_suivant:
+                positionbuttonAddDel = "Supprimer";
+                Apparencebouton(positionbuttonAddDel);
                 if (maxIdListeCapacite == -2) {
                     MiseAJourBDD();
                 }
                 if (!positionliste.equals(maxIdListeCapacite)) {
                     if (maxIdListeCapacite == -1) {
-                        Toast.makeText(getContext(), "Pas d'enregistrement !!!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Pas d'enregistrement !!!", Toast.LENGTH_SHORT).show();
+                        MiseaZeroCasDelete();
                     } else {
                         positionliste = positionliste + 1;
                         Afficherdonnee();
                     }
                 } else {
-                    Toast.makeText(getContext(), "Fin du fichier", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Fin du fichier", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.bt_capacitemodification_debut:
+                positionbuttonAddDel = "Supprimer";
+                Apparencebouton(positionbuttonAddDel);
                 if (maxIdListeCapacite == -2) {
                     MiseAJourBDD();
                 }
                 if (maxIdListeCapacite == -1) {
-                    Toast.makeText(getContext(), "Pas d'enregistrement !!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Pas d'enregistrement !!!", Toast.LENGTH_SHORT).show();
+                    MiseaZeroCasDelete();
                 } else {
                     positionliste = 0;
                     Afficherdonnee();
                 }
                 break;
             case R.id.bt_capacitemodification_fin:
+                positionbuttonAddDel = "Supprimer";
+                Apparencebouton(positionbuttonAddDel);
                 if (maxIdListeCapacite == -2) {
                     MiseAJourBDD();
                 }
                 if (maxIdListeCapacite == -1) {
-                    Toast.makeText(getContext(), "Pas d'enregistrement !!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Pas d'enregistrement !!!", Toast.LENGTH_SHORT).show();
+                    MiseaZeroCasDelete();
+
                 } else {
                     positionliste = maxIdListeCapacite;
                     Afficherdonnee();
@@ -276,30 +305,53 @@ private Long IdActuel = Long.valueOf("0");
                 Afficherdonnee();
                 break;
             case R.id.bt_capacitemodification_miseazero:
+
                 ListeAModifier.clear();
                 Capacite capaciteitem = new Capacite(0, categorieSelectionnee, "", "", 0, "", 0, "", "", "", "", 0, 0, 0);
                 ListeAModifier.add(capaciteitem);
                 maxIdListeCapacite = -2;
                 positionliste = 0;
                 Afficherdonnee();
-                btAjouter.setVisibility(View.VISIBLE);
+                positionbuttonAddDel = "Ajouter";
+                Apparencebouton(positionbuttonAddDel);
                 etId.setVisibility(View.INVISIBLE);
                 break;
             case R.id.bt_capacitemodification_modifier:
                 Updatebsd();
-
                 break;
             case R.id.bt_capacitemodification_ajouter:
+                if (positionbuttonAddDel =="Supprimer"){
+Deletebsd();
+                }
+                if (positionbuttonAddDel =="Ajouter"){
                 AjouterBsd();
                 if (!testErreur) {
                     Afficherdonnee();
-                    btAjouter.setVisibility(View.INVISIBLE);
+                    positionbuttonAddDel = "Supprimer";
+                    Apparencebouton(positionbuttonAddDel);
                     etId.setVisibility(View.VISIBLE);
                     MiseAJourBDD();
-                }
+                }}
                 break;
         }
     }
+
+    private void MiseaZeroCasDelete() {
+        ListeAModifier.clear();
+        Capacite capaciteitem = new Capacite(0, categorieSelectionnee, "", "", 0, "", 0, "", "", "", "", 0, 0, 0);
+        ListeAModifier.add(capaciteitem);
+        maxIdListeCapacite = -2;
+        positionliste = 0;
+        Afficherdonnee();
+        IdActuel = Long.valueOf("-2");
+    }
+
+    private void Deletebsd() {
+        if (IdActuel!=-2){
+        dao.openWritable();
+                dao.delete(IdActuel);
+        CategorieSelectionnee();
+    }}
 
 
     private void AjouterBsd() {
@@ -381,35 +433,35 @@ private Long IdActuel = Long.valueOf("0");
         if (Pattern.matches("^[0-9]+$", tmpmaxpointstr)) {
             tmpmaxpointint = Integer.valueOf(tmpmaxpointstr);
         } else {
-            Toast.makeText(getContext(), "Points Max non valide !!!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Points Max non valide !!!", Toast.LENGTH_SHORT).show();
             testErreur = true;
         }
 
         if (Pattern.matches("^[0-9]+$", tmppointactuelstr)) {
             tmppointactuelint = Integer.valueOf(tmppointactuelstr);
         } else {
-            Toast.makeText(getContext(), "Points actuels non valide !!!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Points actuels non valide !!!", Toast.LENGTH_SHORT).show();
             testErreur = true;
         }
 
         if (Pattern.matches("^[0-9]+$", tmppointinitiationstr)) {
             tmppointinitiationint = Integer.valueOf(tmppointinitiationstr);
         } else {
-            Toast.makeText(getContext(), "Points Initiation non valide !!!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Points Initiation non valide !!!", Toast.LENGTH_SHORT).show();
             testErreur = true;
         }
 
         if (Pattern.matches("^[0-9]+$", tmppointentrainementstr)) {
             tmppointentrainementint = Integer.valueOf(tmppointentrainementstr);
         } else {
-            Toast.makeText(getContext(), "Points entrainement non valide !!!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Points entrainement non valide !!!", Toast.LENGTH_SHORT).show();
             testErreur = true;
         }
 
         if (Pattern.matches("^[0-9]+$", tmppointmaitrisestr)) {
             tmppointmaitriseint = Integer.valueOf(tmppointmaitrisestr);
         } else {
-            Toast.makeText(getContext(), "Point Maîtrise non valide !!!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Point Maîtrise non valide !!!", Toast.LENGTH_SHORT).show();
             testErreur = true;
         }
         return testErreur;
@@ -548,9 +600,6 @@ private Long IdActuel = Long.valueOf("0");
                 etInitiationPoint.setVisibility(View.VISIBLE);
                 etEntrainementPoint.setVisibility(View.VISIBLE);
                 etMaitrisePoint.setVisibility(View.VISIBLE);
-
-
-
 
                 break;
             default:

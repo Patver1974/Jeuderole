@@ -515,7 +515,7 @@
             android:layout_gravity="center"
             android:background="#F11818"
             android:text="@string/ajouter"
-            android:visibility="invisible"
+            android:visibility="visible"
             android:textColor="@color/black"
             android:textStyle="bold" />
     </LinearLayout>

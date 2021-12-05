@@ -56,8 +56,8 @@
     <string name="points_maitrise"><u>Points Maîtrise</u></string>
     <string name="reinitilisation_donnees">Réiniatilisation Données</string>
     <string name="modifier">Modifier</string>
-    <string name="mise_zero_des_donnees">Mise à zéro des données</string>
-    <string name="ajouter">Ajouter</string>
+    <string name="mise_zero_des_donnees">Ajouter une donnée</string>
+    <string name="ajouter">Supprimer</string>
     <string name="de6">Dé 6</string>
     <string name="de12">Dé 12</string>
     <string name="de100">Dé 100</string>

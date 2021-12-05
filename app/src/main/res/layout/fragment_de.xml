@@ -74,19 +74,19 @@
     </LinearLayout>
     <View
         android:layout_width="30dp"
-        android:layout_height="20dp" />
+        android:layout_height="10dp" />
 
     <TextView
         android:id="@+id/tv_de_affichagenumerique"
         android:layout_width="100dp"
-        android:layout_height="20dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp" />
     <View
         android:layout_width="30dp"
-        android:layout_height="20dp" />
+        android:layout_height="10dp" />
     <View
         android:layout_width="match_parent"
         android:layout_height="5dp"
